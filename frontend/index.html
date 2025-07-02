@@ -1,0 +1,59 @@
+<!--TODO: Remove inline styling-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Policies</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/55820476de.js" crossorigin="anonymous"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <div class="text-center mt-4 mb-4" style="background-color: #ffffff">
+        <img src="images/insurance-logo.png" style="width:300px;height:90px;" alt="logo">
+    </div>
+
+    <main class="container flex-grow-1">
+        <section class="d-flex align-items-center justify-content-center" style="height: 60px; background-color: #0dcaf0">
+            <form id="policySearchForm" class="d-flex mt-2 mb-2">
+              <input name="policySearch" id="policySearchInput" class="form-control me-2" type="search" placeholder="Search for policies" aria-label="Search">
+              <button id="searchButton" class="btn btn-outline-light" type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </form>
+        </section>
+
+        <section class="d-flex justify-content-center mt-4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Policy Number</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Premium</th>
+                        <th scope="col">Start</th>
+                        <th scope="col">End</th>
+                    </tr>
+                    </thead>
+                    <tbody id="policyTableBody">
+                    <tr>
+                        <th scope="row">100321</th>
+                        <td>Active</td>
+                        <td>Aviation</td>
+                        <td>£9500.00py</td>
+                        <td>01/01/2026</td>
+                        <td>31/12/2026</td>
+                    </tr>
+                    </tbody>
+                </table>
+        </section>
+    </main>
+
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/policies/policies.js"></script>
+</body>
+<footer class="text-center d-flex align-items-center justify-content-center" style="background-color: #0066cc; height:70px ">
+     <span class="text-white fw-semibold">© 2025 Ade</span>
+</footer>
+</html>

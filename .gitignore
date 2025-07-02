@@ -1,0 +1,20 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.Python
+build/
+dist/
+venv/
+env/
+.env
+
+# virtualenv
+.venv/
+.env/
+env/
+
+# IDEs and Editors
+.idea/
