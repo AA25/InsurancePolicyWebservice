@@ -13,7 +13,7 @@ For high level overview see HLD below
   * Install Docker, or Podman (including `docker-compose`, or `podman-compose` respectively)
 * Run
   1. If you are not using an ARM architecture system (i.e. Mac with Apple Silicon)
-     * Comment out "platform: linux/arm64" in the `docker-compose.yml` file
+     * You may need to comment out "platform: linux/arm64" in the `docker-compose.yml` file
   2. `docker-compose down -v`
   3. `docker-compose up --build`
      * Confirm all 3 containers are running   
