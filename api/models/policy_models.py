@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 # This file contains Pydantic models for policy-related requests and responses
 
@@ -6,20 +6,9 @@ class PolicyByPolicyNumberRequest(BaseModel):
     policy_number: int = Field(min_length=1, max_length=10, description="Policy number must be between 1 and 10 digits long")
 
 class PolicyResponse(BaseModel):
-    policy_number: int = Field(..., description="Policy number associated with the policy")
-    policy_type: str = Field(..., description="Type of the insurance policy")
-    policy_start_date: str = Field(..., description="Start date of the policy in YYYY-MM-DD format")
-    policy_end_date: str = Field(..., description="End date of the policy in YYYY-MM-DD format")
-    status: str = Field(..., description="Current status of the policy (e.g., active, expired)")
-    premium_amount: float = Field(..., description="Premium amount for the policy")
-    currency: str = Field(..., description="Currency of the premium amount, e.g., GBP, USD, EUR")
-
-    class Config:
-        # it tells Pydantic that it should be able to create an instance of PoliciesResponse
-        # directly from an ORM model instance (e.g., an instance of your SQLAlchemy Policies class).
-        orm_mode = True
-        # for swagger
-        schema_extra = {
+    model_config = ConfigDict(
+        from_attributes=True,
+        json_schema_extra={
             "example": {
                 "id": 1,
                 "policy_holder_id": 101,
@@ -32,6 +21,15 @@ class PolicyResponse(BaseModel):
                 "currency": "GBP"
             }
         }
+    )
+
+    policy_number: int = Field(..., description="Policy number associated with the policy")
+    policy_type: str = Field(..., description="Type of the insurance policy")
+    policy_start_date: str = Field(..., description="Start date of the policy in YYYY-MM-DD format")
+    policy_end_date: str = Field(..., description="End date of the policy in YYYY-MM-DD format")
+    status: str = Field(..., description="Current status of the policy (e.g., active, expired)")
+    premium_amount: float = Field(..., description="Premium amount for the policy")
+    currency: str = Field(..., description="Currency of the premium amount, e.g., GBP, USD, EUR")
 
 class Policy(BaseModel):
     policy_number: int = Field(..., description="Policy number associated with the policy")
