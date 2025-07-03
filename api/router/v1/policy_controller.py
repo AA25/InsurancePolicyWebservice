@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from api.config.database import get_db
 from api.models.policy_models import PolicyResponse
 from api.service.policy_service import PolicyService
-from api.entities.policy import Policy
+from api.models.policy_models import Policy as PolicyModel
 
 # Policy router to handle policy-related endpoints
 
@@ -17,7 +17,7 @@ db_dependency = Annotated[Session, Depends(get_db)]
 
 @router.get("/{policy_number}", status_code=200, response_model=PolicyResponse)
 def get_policy_by_number(policy_number: int, db: db_dependency):
-    policy: Policy = PolicyService(db).get_policy_by_policy_number(policy_number)
+    policy: PolicyModel = PolicyService(db).get_policy_by_policy_number(policy_number)
 
     policy_response = policy.__dict__.copy()
 
@@ -31,7 +31,7 @@ def get_policy_by_number(policy_number: int, db: db_dependency):
 
 @router.get("/", status_code=200, response_model=list[PolicyResponse])
 def get_all_policies(db: db_dependency):
-    policies: List[Policy] = PolicyService(db).get_all_policies()
+    policies: List[PolicyModel] = PolicyService(db).get_all_policies()
 
     # Convert each policy's date fields to ISO strings and create PolicyResponse objects
     policies_response: List[Policy] = []
