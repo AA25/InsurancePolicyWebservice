@@ -28,17 +28,6 @@ class PolicyResponse(BaseModel):
     premium_amount: float = Field(..., description="Premium amount for the policy")
     currency: str = Field(..., description="Currency of the premium amount, e.g., GBP, USD, EUR")
 
-class CreatePolicyRequest(BaseModel):
-    policy_holder_id: int = Field(ge=1, le=3, description="ID of the policy holder")
-    policy_number: int = Field(ge=100000, le=199999, description="Policy number associated with the policy")
-    policy_type: str = Field(..., description="Type of the insurance policy")
-    policy_start_date: str = Field(..., description="Start date of the policy in YYYY-MM-DD format")
-    policy_end_date: str = Field(..., description="End date of the policy in YYYY-MM-DD format")
-    status: str = Field(..., description="Current status of the policy (e.g., active, expired)")
-    premium_amount: float = Field(..., description="Premium amount for the policy")
-    currency: str = Field(..., description="Currency of the premium amount, e.g., GBP, USD, EUR")
-
-
 class Policy(BaseModel):
     policy_number: int = Field(..., description="Policy number associated with the policy")
     policy_type: str = Field(..., description="Type of the insurance policy")
