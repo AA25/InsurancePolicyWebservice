@@ -23,3 +23,20 @@ class PolicyRepository:
             raise HTTPException(status_code=404, detail="No policies found")
 
         return policies
+
+    def create_policy(self, policy_data: PolicyModel) -> PolicyModel:
+        new_policy = Policy(
+            policy_holder_id=policy_data.policy_holder_id,
+            policy_number=policy_data.policy_number,
+            policy_type=policy_data.policy_type,
+            policy_start_date=policy_data.policy_start_date,
+            policy_end_date=policy_data.policy_end_date,
+            status=policy_data.status,
+            premium_amount=policy_data.premium_amount,
+            currency=policy_data.currency
+        )
+        self.db.add(new_policy)
+        self.db.commit()
+        self.db.refresh(new_policy)
+
+        return new_policy

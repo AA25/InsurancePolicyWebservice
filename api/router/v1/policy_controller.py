@@ -4,13 +4,13 @@ from sqlalchemy.orm import Session
 from api.config.database import get_db
 from api.models.policy_models import PolicyResponse
 from api.service.policy_service import PolicyService
-from api.models.policy_models import Policy as PolicyModel
+from api.models.policy_models import Policy as PolicyModel, CreatePolicyRequest
 
 # Policy router to handle policy-related endpoints
 
 router = APIRouter(
-    prefix="/policy",
-    tags=["policy"]
+    prefix="/policies",
+    tags=["policies"]
 )
 
 db_dependency = Annotated[Session, Depends(get_db)]
@@ -44,3 +44,7 @@ def get_all_policies(db: db_dependency):
         policies_response.append(PolicyResponse(**data))
 
     return policies_response
+
+@router.post("/", status_code=201, response_model=PolicyResponse)
+def post_policy(policy_request: CreatePolicyRequest, db: db_dependency):
+    return PolicyService(db).create_policy(policy_request)

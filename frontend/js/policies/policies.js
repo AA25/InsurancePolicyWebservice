@@ -14,7 +14,7 @@ async function fetchPolicyByNumber(policyNumber = 100123) {
         return;
     }
 
-    let apiUrl = `http://localhost:8000/api/v1/policy/${encodeURIComponent(policyNumber)}`;
+    let apiUrl = `http://localhost:8000/api/v1/policies/${encodeURIComponent(policyNumber)}`;
 
     try {
         const response = await fetch(apiUrl);
@@ -45,7 +45,7 @@ async function fetchPolicyByNumber(policyNumber = 100123) {
 }
 
 async function fetchAllPolicies() {
-    let apiUrl = `http://localhost:8000/api/v1/policy`;
+    let apiUrl = `http://localhost:8000/api/v1/policies`;
 
     try {
         // Clear existing table rows before fetching new ones
